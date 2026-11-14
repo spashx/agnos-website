@@ -1,0 +1,700 @@
+<!doctype html>
+<!-- FTR-WEB-001: RQ-WEB-003, RQ-WEB-007 to RQ-WEB-015 / ADR-WEB-001: DEC-WEB-003, DEC-WEB-004, DEC-WEB-005.
+     The page of the AGNOS presentation website, without text: the build fills every [data-i18n] element and every
+     [data-i18n-attr] attribute from assets/content/<language>.md, writes the design tokens it uses at the TOKENS marker
+     and the French dictionary at the FR marker. Visual values come from tokens only (RQ-WEB-015). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title data-i18n="page.title">AGNOS - Agentic efficiency by traceability</title>
+<meta name="description" data-i18n-attr="content=page.description" content="AGNOS, a lightweight engineering process for AI-native development teams.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root {
+  color-scheme: light;
+  --s-accent: #2563EB;
+  --s-accent-subtle: #EFF6FF;
+  --s-border: #E2E8F0;
+  --s-border-strong: #CBD5E1;
+  --s-brand-blue: #4285F4;
+  --s-brand-green: #34A853;
+  --s-brand-light: #E8EAED;
+  --s-brand-tile: #3C4043;
+  --s-brand-yellow: #FBBC05;
+  --s-graph-edge-strong: #475569;
+  --s-graph-node-border: #FFFFFF;
+  --s-kind-agent: #B45309;
+  --s-kind-human: #2563EB;
+  --s-surface-hover: #F1F5F9;
+  --s-surface-raised: #FFFFFF;
+  --s-surface-subtle: #F8FAFC;
+  --s-text: #0F172A;
+  --s-text-muted: #475569;
+  --s-text-on-accent: #FFFFFF;
+  --s-text-subtle: #64748B;
+  --s-tracking-tagline: 0.02em;
+  --s-tracking-wordmark: 0.12em;
+  --s-type-adr: #009E73;
+  --s-type-file: #94A3B8;
+  --s-type-rq: #E69F00;
+  --s-type-task: #D55E00;
+  --s-web-agent-subtle: #FFFBEB;
+  --s-web-band: #0B1120;
+  --s-web-band-accent: #60A5FA;
+  --s-web-band-border: #1E293B;
+  --s-web-band-text: #F1F5F9;
+  --s-web-band-text-muted: #94A3B8;
+  --s-web-band-text-on-accent: #0B1120;
+  --s-web-border-1: 1px;
+  --s-web-border-2: 2px;
+  --s-web-border-3: 3px;
+  --s-web-border-4: 4px;
+  --s-web-console: #000000;
+  --s-web-font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --s-web-font-display: "IBM Plex Sans Condensed", "Arial Narrow", system-ui, sans-serif;
+  --s-web-font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --s-web-hover-brightness: 1.07;
+  --s-web-human-subtle: #EFF6FF;
+  --s-web-leading-body: 1.6;
+  --s-web-leading-code: 1.7;
+  --s-web-leading-heading: 1.1;
+  --s-web-leading-hero: 1.03;
+  --s-web-leading-lockup: 1.15;
+  --s-web-leading-stop: 1.12;
+  --s-web-ok: #15803D;
+  --s-web-opacity-minor: 0.55;
+  --s-web-radius-10: 10px;
+  --s-web-radius-12: 12px;
+  --s-web-radius-3: 3px;
+  --s-web-radius-4: 4px;
+  --s-web-radius-6: 6px;
+  --s-web-radius-8: 8px;
+  --s-web-radius-pill: 999px;
+  --s-web-ratio-shot: 16 / 9;
+  --s-web-sample-danger-background: #b91c1c;
+  --s-web-sample-danger-text: #ffffff;
+  --s-web-sample-primary-background: #2563eb;
+  --s-web-sample-primary-text: #ffffff;
+  --s-web-shadow-shot: 0 26px 50px -38px rgba(15, 23, 42, 0.5);
+  --s-web-size-bar: 58px;
+  --s-web-size-chain-mark: 22px;
+  --s-web-size-dot: 10px;
+  --s-web-size-dot-small: 6px;
+  --s-web-size-icon: 16px;
+  --s-web-size-icon-pill: 13px;
+  --s-web-size-icon-small: 12px;
+  --s-web-size-mark: 32px;
+  --s-web-size-measure-close: 40em;
+  --s-web-size-measure-lede: 44em;
+  --s-web-size-measure-sub: 36em;
+  --s-web-size-measure-title: 22em;
+  --s-web-size-scroll-padding: 68px;
+  --s-web-size-wrap: 1180px;
+  --s-web-size-zoom-height: 88vh;
+  --s-web-size-zoom-width: 92vw;
+  --s-web-space-0: 0px;
+  --s-web-space-1: 1px;
+  --s-web-space-10: 10px;
+  --s-web-space-12: 12px;
+  --s-web-space-14: 14px;
+  --s-web-space-16: 16px;
+  --s-web-space-18: 18px;
+  --s-web-space-2: 2px;
+  --s-web-space-20: 20px;
+  --s-web-space-22: 22px;
+  --s-web-space-24: 24px;
+  --s-web-space-26: 26px;
+  --s-web-space-28: 28px;
+  --s-web-space-3: 3px;
+  --s-web-space-30: 30px;
+  --s-web-space-36: 36px;
+  --s-web-space-4: 4px;
+  --s-web-space-40: 40px;
+  --s-web-space-44: 44px;
+  --s-web-space-48: 48px;
+  --s-web-space-5: 5px;
+  --s-web-space-52: 52px;
+  --s-web-space-56: 56px;
+  --s-web-space-6: 6px;
+  --s-web-space-60: 60px;
+  --s-web-space-64: 64px;
+  --s-web-space-7: 7px;
+  --s-web-space-72: 72px;
+  --s-web-space-8: 8px;
+  --s-web-text-11: 11px;
+  --s-web-text-12: 12px;
+  --s-web-text-13: 13px;
+  --s-web-text-14: 14px;
+  --s-web-text-15: 15px;
+  --s-web-text-16: 16px;
+  --s-web-text-17: 17px;
+  --s-web-text-18: 18px;
+  --s-web-text-20: 20px;
+  --s-web-text-code: 0.92em;
+  --s-web-text-hero: clamp(36px, 5vw, 60px);
+  --s-web-text-section: clamp(28px, 3.4vw, 40px);
+  --s-web-text-stop: clamp(26px, 3vw, 34px);
+  --s-web-tracking-heading: -0.01em;
+  --s-web-tracking-kicker: 0.12em;
+  --s-web-tracking-label: 0.1em;
+  --s-web-tracking-notice: 0.08em;
+  --s-web-zoom-backdrop: rgba(11, 17, 32, 0.8);
+  --s-weight-bold: 700;
+  --s-weight-medium: 500;
+  --s-weight-regular: 400;
+  --s-weight-strong: 600;
+  --c-web-button-primary-background: var(--s-accent);
+  --c-web-button-primary-text: var(--s-text-on-accent);
+  --c-web-focus-ring: var(--s-accent);
+  --c-web-link: var(--s-accent);
+}
+@media (prefers-color-scheme: dark) {
+:root:not([data-theme="light"]) {
+  color-scheme: dark;
+  --s-accent: #60A5FA;
+  --s-accent-subtle: #1C2D60;
+  --s-border: #2A354B;
+  --s-border-strong: #6B7A90;
+  --s-graph-edge-strong: #CBD5E1;
+  --s-graph-node-border: #161E2E;
+  --s-kind-agent: #FBBF24;
+  --s-kind-human: #60A5FA;
+  --s-surface-hover: #243047;
+  --s-surface-raised: #1A2335;
+  --s-surface-subtle: #161E2E;
+  --s-text: #F1F5F9;
+  --s-text-muted: #94A3B8;
+  --s-text-on-accent: #0B1120;
+  --s-text-subtle: #8E9BB0;
+  --s-type-file: #64748B;
+  --s-type-task: #E8711F;
+  --s-web-agent-subtle: #451A03;
+  --s-web-band: #131B2A;
+  --s-web-human-subtle: #1C2D60;
+  --s-web-ok: #4ADE80;
+  --s-web-shadow-shot: 0 26px 50px -38px rgba(0, 0, 0, 0.8);
+}
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --s-accent: #60A5FA;
+  --s-accent-subtle: #1C2D60;
+  --s-border: #2A354B;
+  --s-border-strong: #6B7A90;
+  --s-graph-edge-strong: #CBD5E1;
+  --s-graph-node-border: #161E2E;
+  --s-kind-agent: #FBBF24;
+  --s-kind-human: #60A5FA;
+  --s-surface-hover: #243047;
+  --s-surface-raised: #1A2335;
+  --s-surface-subtle: #161E2E;
+  --s-text: #F1F5F9;
+  --s-text-muted: #94A3B8;
+  --s-text-on-accent: #0B1120;
+  --s-text-subtle: #8E9BB0;
+  --s-type-file: #64748B;
+  --s-type-task: #E8711F;
+  --s-web-agent-subtle: #451A03;
+  --s-web-band: #131B2A;
+  --s-web-human-subtle: #1C2D60;
+  --s-web-ok: #4ADE80;
+  --s-web-shadow-shot: 0 26px 50px -38px rgba(0, 0, 0, 0.8);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--s-web-size-scroll-padding)}
+body{margin:0;background:var(--s-surface-subtle);color:var(--s-text);font-family:var(--s-web-font-body);font-size:var(--s-web-text-16);font-weight:var(--s-weight-regular);line-height:var(--s-web-leading-body);-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--s-web-font-display);text-wrap:balance;margin:0;letter-spacing:var(--s-web-tracking-heading)}
+p{margin:0}
+a{color:var(--c-web-link)}
+code{font-family:var(--s-web-font-mono);font-size:var(--s-web-text-code)}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:var(--s-web-border-2) solid var(--c-web-focus-ring);outline-offset:var(--s-web-border-2);border-radius:var(--s-web-radius-3)}
+.wrap{max-width:var(--s-web-size-wrap);margin-inline:auto;padding-left:max(var(--s-web-space-16),env(safe-area-inset-left,var(--s-web-space-0)));padding-right:max(var(--s-web-space-16),env(safe-area-inset-right,var(--s-web-space-0)))}
+.label{font-family:var(--s-web-font-mono);font-size:var(--s-web-text-11);letter-spacing:var(--s-web-tracking-label);text-transform:uppercase;color:var(--s-text-subtle)}
+.mark-tile{fill:var(--s-brand-tile)}.mark-bar-light{fill:var(--s-brand-light)}.mark-bar-blue{fill:var(--s-brand-blue)}.mark-bar-green{fill:var(--s-brand-green)}.mark-bar-yellow{fill:var(--s-brand-yellow)}
+
+/* notice and bar, with the lockup of the Performance Center's About topic (RQ-WEB-008, RQ-TRC-116) */
+.notice{background:var(--s-surface-hover);border-bottom:var(--s-web-border-1) solid var(--s-border);font-size:var(--s-web-text-13);color:var(--s-text-muted)}
+.notice .wrap{padding-block:var(--s-web-space-8);display:flex;gap:var(--s-web-space-8);flex-wrap:wrap;align-items:baseline}
+.notice b{font-family:var(--s-web-font-mono);font-weight:var(--s-weight-medium);font-size:var(--s-web-text-11);letter-spacing:var(--s-web-tracking-notice);text-transform:uppercase;color:var(--s-text)}
+.bar{position:sticky;top:env(safe-area-inset-top,var(--s-web-space-0));z-index:20;background:var(--s-surface-raised);border-bottom:var(--s-web-border-1) solid var(--s-border)}
+.bar .wrap{display:flex;align-items:center;gap:var(--s-web-space-20);min-height:var(--s-web-size-bar)}
+.brand{display:flex;align-items:center;gap:var(--s-web-space-10);text-decoration:none;color:var(--s-text);flex:none}
+.brand svg{width:var(--s-web-size-mark);height:var(--s-web-size-mark)}
+.brand-text{display:flex;flex-direction:column;align-items:flex-start;line-height:var(--s-web-leading-lockup)}
+.brand-name{font-weight:var(--s-weight-bold);font-size:var(--s-web-text-20);letter-spacing:var(--s-tracking-wordmark);text-transform:uppercase}
+.brand-tagline{font-weight:var(--s-weight-medium);font-size:var(--s-web-text-11);letter-spacing:var(--s-tracking-tagline);color:var(--s-text-muted)}
+.nav{display:flex;gap:var(--s-web-space-4);flex:1;min-width:0}
+.nav a{white-space:nowrap;text-decoration:none;color:var(--s-text-muted);font-size:var(--s-web-text-14);padding:var(--s-web-space-6) var(--s-web-space-10);border-radius:var(--s-web-radius-4)}
+.nav a:hover{background:var(--s-surface-hover);color:var(--s-text)}
+.seg{display:inline-flex;border:var(--s-web-border-1) solid var(--s-border-strong);border-radius:var(--s-web-radius-6);overflow:hidden;flex:none}
+.seg button{border:none;background:var(--s-surface-raised);padding:var(--s-web-space-4) var(--s-web-space-10);font-size:var(--s-web-text-13);color:var(--s-text-muted)}
+.seg button[aria-pressed="true"]{background:var(--s-text);color:var(--s-surface-subtle)}
+.lang button{font-family:var(--s-web-font-mono);font-size:var(--s-web-text-12)}
+.btn{display:inline-flex;align-items:center;gap:var(--s-web-space-8);padding:var(--s-web-space-12) var(--s-web-space-18);border-radius:var(--s-web-radius-6);font-weight:var(--s-weight-strong);font-size:var(--s-web-text-15);text-decoration:none;border:var(--s-web-border-1) solid transparent;white-space:nowrap}
+.btn-sm{padding:var(--s-web-space-6) var(--s-web-space-12);font-size:var(--s-web-text-14)}
+.btn-primary{background:var(--c-web-button-primary-background);color:var(--c-web-button-primary-text)}
+.btn-primary:hover{filter:brightness(var(--s-web-hover-brightness))}
+.btn-ghost{border-color:var(--s-border-strong);color:var(--s-text);background:transparent}
+.btn-ghost:hover{background:var(--s-surface-hover)}
+
+/* hero */
+.hero{background:var(--s-surface-raised);border-bottom:var(--s-web-border-1) solid var(--s-border)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,11fr) minmax(0,10fr);gap:var(--s-web-space-56);padding-block:var(--s-web-space-60) var(--s-web-space-56);align-items:center}
+.kicker{font-family:var(--s-web-font-mono);font-size:var(--s-web-text-12);letter-spacing:var(--s-web-tracking-kicker);text-transform:uppercase;color:var(--s-text-subtle)}
+.hero h1{font-size:var(--s-web-text-hero);line-height:var(--s-web-leading-hero);font-weight:var(--s-weight-bold);margin-top:var(--s-web-space-16)}
+.hero h1 em{font-style:normal;color:var(--s-accent)}
+.hero .sub{font-size:var(--s-web-text-18);color:var(--s-text-muted);margin-top:var(--s-web-space-22);max-width:var(--s-web-size-measure-sub)}
+.cta{display:flex;gap:var(--s-web-space-12);flex-wrap:wrap;margin-top:var(--s-web-space-30)}
+.tools{margin-top:var(--s-web-space-26);font-size:var(--s-web-text-14);color:var(--s-text-subtle)}
+
+/* the chain, human in or on the loop (RQ-WEB-010) */
+.chain-card{background:var(--s-surface-subtle);border:var(--s-web-border-1) solid var(--s-border);border-radius:var(--s-web-radius-12);padding:var(--s-web-space-18) var(--s-web-space-18) var(--s-web-space-16)}
+.chain-head{display:flex;justify-content:space-between;align-items:center;gap:var(--s-web-space-12);flex-wrap:wrap;margin-bottom:var(--s-web-space-12)}
+.chain-head h2{font-size:var(--s-web-text-17);font-weight:var(--s-weight-strong)}
+.loop{--loop:var(--s-kind-human);--loop-soft:var(--s-web-human-subtle);border:var(--s-web-border-1) solid var(--s-border);border-left:var(--s-web-border-4) solid var(--loop);border-radius:var(--s-web-radius-8);background:var(--s-surface-raised);padding:var(--s-web-space-10) var(--s-web-space-12) var(--s-web-space-6);margin-bottom:var(--s-web-space-10)}
+.loop-on,.chain[data-mode="on"] .loop-in{--loop:var(--s-kind-agent);--loop-soft:var(--s-web-agent-subtle)}
+.loop-k{display:flex;align-items:center;gap:var(--s-web-space-8);font-weight:var(--s-weight-strong);font-size:var(--s-web-text-14)}
+.who{display:inline-flex;align-items:center;gap:var(--s-web-space-3);padding:var(--s-web-space-3) var(--s-web-space-7);border-radius:var(--s-web-radius-pill);background:var(--loop-soft)}
+.who svg{width:var(--s-web-size-icon);height:var(--s-web-size-icon)}
+.who .human{fill:var(--s-kind-human)}.who .agent{fill:var(--s-kind-agent)}
+.who .minor{width:var(--s-web-size-icon-small);height:var(--s-web-size-icon-small);opacity:var(--s-web-opacity-minor)}
+.loop-t{font-size:var(--s-web-text-13);color:var(--s-text-muted);margin-top:var(--s-web-space-2)}
+.when-on{display:none}
+.chain[data-mode="on"] .when-on{display:inline-flex}
+.chain[data-mode="on"] .when-mixed{display:none}
+.chain[data-mode="on"] .loop-t .when-on{display:inline}
+.steps-list{list-style:none;margin:var(--s-web-space-6) 0 0;padding:0}
+.steps-list li{display:grid;grid-template-columns:var(--s-web-size-chain-mark) minmax(0,1fr);gap:var(--s-web-space-10);padding:var(--s-web-space-5) 0;position:relative}
+.steps-list li::before{content:"";position:absolute;left:var(--s-web-space-10);top:0;bottom:0;width:var(--s-web-border-2);background:var(--s-border)}
+.steps-list li:first-child::before{top:var(--s-web-space-14)}
+.steps-list li:last-child::before{bottom:calc(100% - var(--s-web-space-14))}
+.dot{width:var(--s-web-size-dot);height:var(--s-web-size-dot);border-radius:50%;background:var(--loop);margin:var(--s-web-space-6) 0 0 var(--s-web-space-6);position:relative;z-index:1;box-shadow:0 0 0 var(--s-web-space-3) var(--s-surface-raised)}
+.st .k{font-family:var(--s-web-font-mono);font-size:var(--s-web-text-11);letter-spacing:var(--s-web-tracking-label);text-transform:uppercase;color:var(--s-text-subtle)}
+.st .id{font-family:var(--s-web-font-mono);font-weight:var(--s-weight-medium);font-size:var(--s-web-text-14);margin-left:var(--s-web-space-8)}
+.st .t{display:block;font-size:var(--s-web-text-14);color:var(--s-text-muted)}
+.gate .dot{width:var(--s-web-size-dot-small);height:var(--s-web-size-dot-small);margin:var(--s-web-space-8) 0 0 var(--s-web-space-8);background:var(--s-web-ok)}
+.pill{display:inline-flex;align-items:center;gap:var(--s-web-space-6);justify-self:start;font-size:var(--s-web-text-13);font-weight:var(--s-weight-strong);padding:var(--s-web-space-1) var(--s-web-space-10) var(--s-web-space-1) var(--s-web-space-7);border-radius:var(--s-web-radius-pill);border:var(--s-web-border-1) solid var(--s-web-ok)}
+.pill svg{width:var(--s-web-size-icon-pill);height:var(--s-web-size-icon-pill);fill:var(--s-web-ok)}
+.chain-pc{display:grid;grid-template-columns:var(--s-web-size-chain-mark) minmax(0,1fr);gap:var(--s-web-space-10);align-items:start;padding:var(--s-web-space-6) var(--s-web-space-12) 0 var(--s-web-space-16)}
+.chain-pc svg{width:var(--s-web-size-chain-mark);height:var(--s-web-size-chain-mark)}
+/* TASK-WEB-019, RQ-WEB-010: the supervision text starts at the icon's left edge */
+.chain-pc .st{align-self:center}
+.chain-pc .t{grid-column:1 / -1;font-size:var(--s-web-text-14);color:var(--s-text-muted)}
+.chain-foot{margin-top:var(--s-web-space-10);padding-top:var(--s-web-space-10);border-top:var(--s-web-border-1) solid var(--s-border);font-size:var(--s-web-text-13);color:var(--s-text-muted)}
+
+/* tour (RQ-WEB-009) */
+.tour-intro .wrap{padding-block:var(--s-web-space-72) var(--s-web-space-8)}
+.eyebrow{font-family:var(--s-web-font-mono);font-size:var(--s-web-text-12);letter-spacing:var(--s-web-tracking-kicker);text-transform:uppercase;color:var(--s-accent);margin-bottom:var(--s-web-space-12)}
+.tour-intro h2,.more h2{font-size:var(--s-web-text-section);line-height:var(--s-web-leading-heading);font-weight:var(--s-weight-bold);max-width:var(--s-web-size-measure-title)}
+.tour-intro .lede{font-size:var(--s-web-text-17);color:var(--s-text-muted);max-width:var(--s-web-size-measure-lede);margin-top:var(--s-web-space-14)}
+.stop{border-bottom:var(--s-web-border-1) solid var(--s-border)}
+.stop .wrap{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:var(--s-web-space-52);align-items:start;padding-block:var(--s-web-space-64)}
+.stop .wrap > *{min-width:0}
+.stop-n{font-family:var(--s-web-font-mono);font-size:var(--s-web-text-12);letter-spacing:var(--s-web-tracking-notice);text-transform:uppercase;color:var(--s-accent);margin-bottom:var(--s-web-space-10)}
+.stop h2{font-size:var(--s-web-text-stop);line-height:var(--s-web-leading-stop);font-weight:var(--s-weight-bold)}
+.pair{margin-top:var(--s-web-space-18)}
+.pair p:last-child{margin-top:var(--s-web-space-4);color:var(--s-text-muted)}
+.tags{display:flex;flex-wrap:wrap;gap:var(--s-web-space-6);list-style:none;padding:0;margin:var(--s-web-space-18) 0 0}
+.tags li{font-size:var(--s-web-text-13);padding:var(--s-web-space-2) var(--s-web-space-10);border:var(--s-web-border-1) solid var(--s-border-strong);border-radius:var(--s-web-radius-pill);color:var(--s-text-muted)}
+
+/* screenshots: the real views, a click opens the demo (RQ-WEB-011, DEC-WEB-004) */
+.shot{margin:0}
+.cap{margin-top:var(--s-web-space-10);font-size:var(--s-web-text-13);color:var(--s-text-subtle)}
+
+/* cards */
+.more .wrap{padding-block:var(--s-web-space-72)}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-web-space-20);margin-top:var(--s-web-space-28)}
+.card{background:var(--s-surface-raised);border:var(--s-web-border-1) solid var(--s-border);border-radius:var(--s-web-radius-10);padding:var(--s-web-space-22);display:flex;flex-direction:column;gap:var(--s-web-space-12)}
+.card h3{font-size:var(--s-web-text-20)}
+.card > p{color:var(--s-text-muted);font-size:var(--s-web-text-15)}
+.excerpt{margin:0;background:var(--s-surface-subtle);color:var(--s-text);border:var(--s-web-border-1) solid var(--s-border);border-radius:var(--s-web-radius-6);padding:var(--s-web-space-10) var(--s-web-space-12);font-family:var(--s-web-font-mono);font-size:var(--s-web-text-12);line-height:var(--s-web-leading-code);overflow-x:auto;white-space:pre}
+.excerpt span{color:var(--s-text-subtle)}
+.excerpt mark{background:var(--s-accent-subtle);color:var(--s-accent);font-weight:var(--s-weight-strong);border-radius:var(--s-web-radius-3)}
+.styles{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-web-space-12)}
+.style{display:grid;gap:var(--s-web-space-6);padding:var(--s-web-space-10);border:var(--s-web-border-1) solid var(--s-border);border-radius:var(--s-web-radius-6);background:var(--s-surface-subtle);min-width:0}
+.snippet-css{padding-top:var(--s-web-space-6);border-top:var(--s-web-border-1) solid var(--s-border)}
+.sample{justify-self:start;display:inline-flex;align-items:center;padding:var(--s-web-space-8) var(--s-web-space-16);border:var(--s-web-border-1) solid transparent;border-radius:var(--s-web-radius-6);font-size:var(--s-web-text-14);font-weight:var(--s-weight-strong)}
+.sample-primary{background:var(--s-web-sample-primary-background);color:var(--s-web-sample-primary-text)}
+.sample-danger{background:var(--s-web-sample-danger-background);color:var(--s-web-sample-danger-text)}
+.card .cap{margin-top:0}
+/* RQ-WEB-018: identifiers as keys */
+.stack{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--s-web-space-8)}
+.snippet{margin:var(--s-web-space-4) 0 0;font-family:var(--s-web-font-mono);font-size:var(--s-web-text-12);line-height:var(--s-web-leading-code);white-space:pre-wrap;overflow-wrap:anywhere;color:var(--s-text)}
+.snippet span{color:var(--s-text-subtle)}
+.snippet mark{background:var(--s-accent-subtle);color:var(--s-accent);font-weight:var(--s-weight-strong);border-radius:var(--s-web-radius-3)}
+.key{padding:var(--s-web-space-8) var(--s-web-space-10);border:var(--s-web-border-1) solid var(--s-border);border-radius:var(--s-web-radius-6);background:var(--s-surface-subtle);min-width:0}
+.id-graph{display:block;width:100%;height:auto}
+.id-graph .edge{stroke:var(--s-graph-edge-strong);stroke-width:var(--s-web-border-2)}
+.node{stroke:var(--s-graph-node-border);stroke-width:var(--s-web-border-3)}
+.node-rq{fill:var(--s-type-rq)}.node-task{fill:var(--s-type-task)}.node-adr{fill:var(--s-type-adr)}.node-file{fill:var(--s-type-file)}
+.node-label{font-family:var(--s-web-font-mono);font-size:var(--s-web-text-11);fill:var(--s-text);text-anchor:middle}
+.edge-label{font-family:var(--s-web-font-mono);font-size:var(--s-web-text-11);fill:var(--s-text-subtle);text-anchor:middle}
+.node-title{font-family:var(--s-web-font-body);font-size:var(--s-web-text-11);fill:var(--s-text-muted);text-anchor:middle}
+.id-graph .node-start{text-anchor:start}.id-graph .node-end{text-anchor:end}
+.arrow-head{fill:var(--s-graph-edge-strong)}
+.key-arrow{font-size:var(--s-web-text-12);color:var(--s-text-subtle);padding-left:var(--s-web-space-10)}
+.matching{display:grid;gap:var(--s-web-space-4);list-style:none;margin:0;padding:0;font-size:var(--s-web-text-13);color:var(--s-text-muted)}
+.matching li{padding-left:var(--s-web-space-10);border-left:var(--s-web-border-3) solid var(--s-border-strong)}
+.matching li.exact{border-left-color:var(--s-web-ok);color:var(--s-text)}
+
+/* close */
+.close{background:var(--s-web-band);color:var(--s-web-band-text)}
+.close .wrap{padding-block:var(--s-web-space-72)}
+.close-top{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--s-web-space-24);flex-wrap:wrap}
+.close h2{font-size:var(--s-web-text-section);color:var(--s-web-band-text)}
+.close p{color:var(--s-web-band-text-muted)}
+.close-text{margin-top:var(--s-web-space-10);max-width:var(--s-web-size-measure-close)}
+.close .addr{font-size:var(--s-web-text-13);margin-top:var(--s-web-space-8)}
+.close .btn-primary{background:var(--s-web-band-accent);color:var(--s-web-band-text-on-accent)}
+.close h2.small{font-size:var(--s-web-text-20);margin-top:var(--s-web-space-48)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-web-space-16);margin-top:var(--s-web-space-16)}
+.steps > div{border:var(--s-web-border-1) solid var(--s-web-band-border);border-radius:var(--s-web-radius-8);padding:var(--s-web-space-18)}
+.steps .n{font-family:var(--s-web-font-mono);font-size:var(--s-web-text-12);color:var(--s-web-band-text-muted)}
+.steps h3{font-size:var(--s-web-text-20);color:var(--s-web-band-text);margin-top:var(--s-web-space-2)}
+.steps p{font-size:var(--s-web-text-14);margin-top:var(--s-web-space-6)}
+.steps code{color:var(--s-web-band-accent)}
+/* TASK-WEB-018, RQ-WEB-009: an example command under each start step */
+.console{margin:var(--s-web-space-10) 0 0;background:var(--s-web-console);color:var(--s-web-band-text);border:var(--s-web-border-1) solid var(--s-web-band-border);border-radius:var(--s-web-radius-6);padding:var(--s-web-space-10) var(--s-web-space-12);font-family:var(--s-web-font-mono);font-size:var(--s-web-text-12);line-height:var(--s-web-leading-code);white-space:pre-wrap;overflow-wrap:anywhere}
+.foot{display:flex;justify-content:space-between;gap:var(--s-web-space-16);flex-wrap:wrap;margin-top:var(--s-web-space-40);padding-top:var(--s-web-space-20);border-top:var(--s-web-border-1) solid var(--s-web-band-border);font-size:var(--s-web-text-13);color:var(--s-web-band-text-muted)}
+.foot a{color:var(--s-web-band-accent)}
+
+/* three examples under the first stop, enlarged on click (RQ-WEB-017) */
+.examples{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-web-space-20)}
+.example{margin:0}
+.example-open{display:block;width:100%;padding:0;border:var(--s-web-border-1) solid var(--s-border);border-radius:var(--s-web-radius-8);overflow:hidden;background:var(--s-surface-raised);cursor:zoom-in;box-shadow:var(--s-web-shadow-shot)}
+.example-open img{display:block;width:100%;height:auto;aspect-ratio:var(--s-web-ratio-shot);object-fit:cover}
+.example figcaption{margin-top:var(--s-web-space-8);font-size:var(--s-web-text-13);color:var(--s-text-muted)}
+.zoom{padding:0;border:none;border-radius:var(--s-web-radius-10);background:var(--s-surface-raised);max-width:var(--s-web-size-zoom-width);max-height:var(--s-web-size-zoom-height);overflow:hidden}
+.zoom::backdrop{background:var(--s-web-zoom-backdrop)}
+.zoom img{display:block;max-width:var(--s-web-size-zoom-width);max-height:var(--s-web-size-zoom-height);object-fit:contain}
+.zoom-close{position:absolute;top:var(--s-web-space-8);right:var(--s-web-space-8);border:none;border-radius:var(--s-web-radius-pill);background:var(--s-text);color:var(--s-surface-subtle);display:flex;padding:var(--s-web-space-6)}
+.zoom-close svg{width:var(--s-web-size-icon);height:var(--s-web-size-icon);fill:currentColor}
+
+/* RQ-WEB-014: one column under the wide breakpoint, a compact bar under the narrow one */
+@media (max-width: 980px){
+  .hero .wrap,.stop .wrap{grid-template-columns:minmax(0,1fr)}
+  .hero .wrap{gap:var(--s-web-space-36);padding-block:var(--s-web-space-44)}
+  .stop .wrap{gap:var(--s-web-space-28);padding-block:var(--s-web-space-52)}
+  .steps{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width: 640px){
+  .nav,.bar .btn{display:none}
+  .bar .wrap{justify-content:space-between;gap:var(--s-web-space-10)}
+  .examples{grid-template-columns:minmax(0,1fr)}
+  .cards{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="brand-mark" viewBox="0 0 24 24"><rect class="mark-tile" width="24" height="24" rx="5.5"></rect><rect class="mark-bar-light" x="4" y="3" width="16" height="3" rx="1"></rect><rect class="mark-bar-blue" x="4" y="8" width="6" height="3" rx="1"></rect><rect class="mark-bar-green" x="10" y="13" width="5" height="3" rx="1"></rect><rect class="mark-bar-yellow" x="15" y="18" width="5" height="3" rx="1"></rect></symbol>
+  <symbol id="icon-human" viewBox="0 0 24 24"><circle cx="12" cy="7.5" r="4.5"></circle><path d="M3.5 21a8.5 8.5 0 0 1 17 0Z"></path></symbol>
+  <symbol id="icon-agent" viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="13" rx="3"></rect><path d="M11 2h2v5h-2z"></path></symbol>
+  <symbol id="icon-close" viewBox="0 0 24 24"><path d="M6.4 5 5 6.4l5.6 5.6L5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4-5.6-5.6L19 6.4 17.6 5 12 10.6z"></path></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="M9.5 16.2 5.3 12l-1.8 1.8 6 6L21 8.3l-1.8-1.8z"></path></symbol>
+</svg>
+
+<div class="notice"><div class="wrap"><b data-i18n="notice.label">Demo</b><span data-i18n="notice.text">The views on this page come from Roombook, the AGNOS demo project, whose team and two months of history are simulated.</span></div></div>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top" data-i18n-attr="aria-label=brand.name" aria-label="AGNOS"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#brand-mark"></use></svg><span class="brand-text"><span class="brand-name" data-i18n="brand.name">AGNOS</span><span class="brand-tagline" data-i18n="brand.tagline">Agentic efficiency by traceability</span></span></a>
+    <nav class="nav" data-i18n-attr="aria-label=nav.sections" aria-label="Sections"><a href="#tour" data-i18n="nav.tour">The tour</a><a href="#start" data-i18n="nav.start">Get started</a></nav>
+    <div class="seg lang" role="group" data-i18n-attr="aria-label=nav.language" aria-label="Language"><button type="button" data-lang="en" aria-pressed="true" data-i18n="nav.english">EN</button><button type="button" data-lang="fr" aria-pressed="false" data-i18n="nav.french">FR</button></div>
+    <a class="btn btn-primary btn-sm" href="demo/PERF-CENTER.html" target="_blank" rel="noopener" data-i18n="nav.demo">Demo</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="kicker" data-i18n="hero.kicker">Engineering process for agentic AI</p>
+      <h1 data-i18n="hero.title">AI agents write the code, or much more.<br><em>You keep control.</em></h1>
+      <p class="sub" data-i18n="hero.text">AGNOS is a lightweight, tooled process for <em>AI-native</em> development teams (pods of a few people, or solo). Requirements, decisions, tasks, code and commits carry the same identifiers: the work stays explainable, and the process is measured on every project, in real time, with the built-in AGNOS Performance Center application.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="demo/PERF-CENTER.html" target="_blank" rel="noopener" data-i18n="hero.cta-demo">Open the demo Performance Center</a>
+        <a class="btn btn-ghost" href="#tour" data-i18n="hero.cta-tour">The tour</a>
+      </div>
+      <p class="tools" data-i18n="hero.tools">Works with Claude Code and GitHub Copilot (OpenAI Codex support coming soon). Its artifacts are in Markdown, versioned in git, to maximise operational efficiency.</p>
+    </div>
+    <div class="chain-card">
+      <div class="chain-head">
+        <h2 data-i18n="chain.title">The agentic loop, from need to commit</h2>
+        <div class="seg" role="group" data-i18n-attr="aria-label=chain.supervision" aria-label="Supervision"><button type="button" data-chain="mixed" aria-pressed="true" data-i18n="chain.mode-mixed">Mixed</button><button type="button" data-chain="on" aria-pressed="false" data-i18n="chain.mode-on">End-to-end supervision</button></div>
+      </div>
+      <div class="chain" data-mode="mixed">
+        <div class="loop loop-in">
+          <p class="loop-k">
+            <span class="who when-mixed"><svg class="human" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-human"></use></svg><svg class="agent minor" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-agent"></use></svg></span>
+            <span class="who when-on"><svg class="agent" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-agent"></use></svg><svg class="human minor" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-human"></use></svg></span>
+            <span class="when-mixed" data-i18n="chain.in-loop">Human in the loop</span><span class="when-on" data-i18n="chain.on-loop">Human on the loop</span>
+          </p>
+          <p class="loop-t"><span class="when-mixed" data-i18n="chain.in-loop-text">The agent drafts; you decide and approve each step.</span><span class="when-on" data-i18n="chain.on-loop-draft-text">Asked to work in full autonomy, the agent drafts and takes the decisions; you supervise, and step in if needed.</span></p>
+          <ol class="steps-list">
+            <li><span class="dot"></span><span class="st"><span class="k" data-i18n="chain.requirement">Requirement</span><span class="id" data-i18n="chain.requirement-id">RQ-BKG-003</span><span class="t" data-i18n="chain.requirement-text">The expression of the need, formalised to be testable</span></span></li>
+            <li><span class="dot"></span><span class="st"><span class="k" data-i18n="chain.decision">Architecture and decision</span><span class="id" data-i18n="chain.decision-id">DEC-BKG-002</span><span class="t" data-i18n="chain.decision-text">Why this design, and what was ruled out</span></span></li>
+            <li><span class="dot"></span><span class="st"><span class="k" data-i18n="chain.task">Task</span><span class="id" data-i18n="chain.task-id">TASK-BKG-003</span><span class="t" data-i18n="chain.task-text">Sized to the risk, approved before it starts</span></span></li>
+            <li class="gate"><span class="dot"></span><span class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-human"></use></svg><span class="when-mixed" data-i18n="chain.approve">You approve</span><span class="when-on" data-i18n="chain.approve-on">Decisions delegated to the agent</span></span></li>
+          </ol>
+        </div>
+        <div class="loop loop-on">
+          <p class="loop-k">
+            <span class="who"><svg class="agent" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-agent"></use></svg><svg class="human minor" viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-human"></use></svg></span>
+            <span data-i18n="chain.on-loop">Human on the loop</span>
+          </p>
+          <p class="loop-t" data-i18n="chain.on-loop-text">The agent carries out the approved task; you supervise, and step in if needed.</p>
+          <ol class="steps-list">
+            <li><span class="dot"></span><span class="st"><span class="k" data-i18n="chain.code">Tests, then code</span><span class="id" data-i18n="chain.code-id">OverlapRule.check</span><span class="t" data-i18n="chain.code-text">Every element cites its identifiers</span></span></li>
+            <li class="gate"><span class="dot"></span><span class="pill"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-check"></use></svg><span data-i18n="chain.done">Checklist passed</span></span></li>
+            <li><span class="dot"></span><span class="st"><span class="k" data-i18n="chain.commit">Commit</span><span class="id" data-i18n="chain.commit-id">12dc6e4</span><span class="t" data-i18n="chain.commit-text">One per task, its identifiers checked by a script</span></span></li>
+          </ol>
+        </div>
+        <div class="chain-pc"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#brand-mark"></use></svg><span class="st"><span class="k" data-i18n="chain.measure">Performance Center</span></span><span class="t" data-i18n="chain.measure-text">End-to-end supervision of the process, across the whole project</span></div>
+      </div>
+      <p class="chain-foot" data-i18n="chain.foot">Work is done in sessions: one functional area, one branch, ten tasks at most, for optimal context management</p>
+    </div>
+  </div>
+</section>
+
+<section class="tour-intro" id="tour">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="tour.eyebrow">The tour</p>
+    <h2 data-i18n="tour.title">The Performance Center, the control centre for your agentic development</h2>
+    <p class="lede" data-i18n="tour.text">The five views of the Performance Center meet the fundamental need to monitor your development. Each example view below is a screenshot of the Performance Center on Roombook, the AGNOS demo project. Click one of them to open it, live, in the demo.</p>
+  </div>
+</section>
+
+<section class="stop" id="matrix">
+  <div class="wrap">
+    <div>
+      <p class="stop-n">1 / 5 · <span data-i18n="matrix.view">Matrix view</span></p>
+      <h2 data-i18n="matrix.question">Is what was asked for really built?</h2>
+      <div class="pair"><p class="label" data-i18n="labels.see">What you see</p><p data-i18n="matrix.see">The end-to-end traceability matrix, from functional capabilities to code, on a single page, directly exportable.</p></div>
+      <div class="pair"><p class="label" data-i18n="labels.why">What makes it possible</p><p data-i18n="matrix.why">Every element of the process is uniquely identified, from the functional capability to the commit. The specification and the tests, expressed in testable syntaxes (<em>EARS</em>, <em>Gherkin</em>), keep the agent&#x27;s interpretation at implementation to a minimum.</p></div>
+      <ul class="tags" data-i18n="matrix.tags"><li>EARS</li><li>Gherkin</li><li>Identifiers in the code</li></ul>
+    </div>
+    <div><figure class="shot"><button type="button" class="example-open" data-i18n="matrix.shot"><img src="screens/matrix.png" alt="Matrix view" loading="lazy"></button></figure><p class="cap" data-i18n="matrix.caption">The Matrix view of the Performance Center</p></div>
+    <div class="examples">
+      <figure class="example"><button type="button" class="example-open" data-i18n="examples.requirement"><img src="screens/example-requirement.png" alt="A requirement" loading="lazy"></button><figcaption data-i18n="examples.requirement-caption">A requirement</figcaption></figure>
+      <figure class="example"><button type="button" class="example-open" data-i18n="examples.adr"><img src="screens/example-adr.png" alt="Architecture Decision Record, and auto-generated diagrams" loading="lazy"></button><figcaption data-i18n="examples.adr-caption">Architecture Decision Record, and auto-generated diagrams</figcaption></figure>
+      <figure class="example"><button type="button" class="example-open" data-i18n="examples.plan"><img src="screens/example-plan.png" alt="Execution plan and implementation task" loading="lazy"></button><figcaption data-i18n="examples.plan-caption">Execution plan and implementation task</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="stop" id="graph">
+  <div class="wrap">
+    <div>
+      <p class="stop-n">2 / 5 · <span data-i18n="graph.view">Graph view</span></p>
+      <h2 data-i18n="graph.question">Why does this code exist, and what would a change touch?</h2>
+      <div class="pair"><p class="label" data-i18n="labels.see">What you see</p><p data-i18n="graph.see">The dependency tree of a selected element: its feature, the decisions that shaped it, the tasks that delivered it, the files and functions that implement it.</p></div>
+      <div class="pair"><p class="label" data-i18n="labels.why">What makes it possible</p><p data-i18n="graph.why">The synergy of the implementation&#x27;s abstract syntax tree (<em>AST</em>) and of the single identifier grammar guarantees a holistic, explorable view of the relations between artifacts.</p></div>
+      <ul class="tags" data-i18n="graph.tags"><li>Abstract Syntax Tree</li><li>Identifier grammar</li><li>Explorable graph</li></ul>
+    </div>
+    <div><figure class="shot"><button type="button" class="example-open" data-i18n="graph.shot"><img src="screens/graph.png" alt="The Graph view of the Performance Center" loading="lazy"></button></figure><p class="cap" data-i18n="graph.caption">The Graph view of the Performance Center</p></div>
+  </div>
+</section>
+
+<section class="stop" id="history">
+  <div class="wrap">
+    <div>
+      <p class="stop-n">3 / 5 · <span data-i18n="history.view">History view</span></p>
+      <h2 data-i18n="history.question">Who changed what, and when? Agent, human, or both?</h2>
+      <div class="pair"><p class="label" data-i18n="labels.see">What you see</p><p data-i18n="history.see">Every change to a requirement, a decision, a file or a function, credited to its authors from git. Each identity is classed as human or AI agent. Every commit, human, agentic or collaborative, can be traced through a requirement view or an implementation view.</p></div>
+      <div class="pair"><p class="label" data-i18n="labels.why">What makes it possible</p><p data-i18n="history.why">One commit per task, made by a skill that writes the task and ADR identifiers into its message, following the <em>Conventional Commits</em> standard. Git remains the single system of record, independent of any infrastructure.</p></div>
+      <ul class="tags" data-i18n="history.tags"><li>Chronological view</li><li>One commit per task</li><li>Human or agent</li></ul>
+    </div>
+    <div><figure class="shot"><button type="button" class="example-open" data-i18n="history.shot"><img src="screens/history.png" alt="The History view of the Performance Center" loading="lazy"></button></figure><p class="cap" data-i18n="history.caption">The History view of the Performance Center</p></div>
+  </div>
+</section>
+
+<section class="stop" id="delivery">
+  <div class="wrap">
+    <div>
+      <p class="stop-n">4 / 5 · <span data-i18n="delivery.view">Delivery view</span></p>
+      <h2 data-i18n="delivery.question">What was delivered, and how fast? Is agentic velocity under control?</h2>
+      <div class="pair"><p class="label" data-i18n="labels.see">What you see</p><p data-i18n="delivery.see">The tasks delivered over time, weighted by their tier, and the friction of each session: questions the agent had to ask, error recoveries, re-tiered tasks, discrepancies caught at verification.</p></div>
+      <div class="pair"><p class="label" data-i18n="labels.why">What makes it possible</p><p data-i18n="delivery.why">Work is done in sessions of ten tasks at most, for optimal use of the context. Each session closes on its friction counters; if one of them is not zero, a self-improvement step proposes rules for the project, applied once approved and within a defined budget.</p></div>
+      <ul class="tags" data-i18n="delivery.tags"><li>Sessions</li><li>Friction counters</li><li>Self-improvement</li></ul>
+    </div>
+    <div><figure class="shot"><button type="button" class="example-open" data-i18n="delivery.shot"><img src="screens/delivery.png" alt="The Delivery view of the Performance Center" loading="lazy"></button></figure><p class="cap" data-i18n="delivery.caption">The Delivery view of the Performance Center</p></div>
+  </div>
+</section>
+
+<section class="stop" id="quality">
+  <div class="wrap">
+    <div>
+      <p class="stop-n">5 / 5 · <span data-i18n="quality.view">Quality view</span></p>
+      <h2 data-i18n="quality.question">Is traceability guaranteed, per functional area?</h2>
+      <div class="pair"><p class="label" data-i18n="labels.see">What you see</p><p data-i18n="quality.see">Easy-to-read KPIs from A to E, computed from risk-weighted checks. Each gap points to the element to fix: on Roombook, functions that do not cite a requirement yet.</p></div>
+      <div class="pair"><p class="label" data-i18n="labels.why">What makes it possible</p><p data-i18n="quality.why">Gates the agent cannot bypass. Each task answers a need, starts only once approved (Definition of Ready) and closes only once its checklist is passed (Definition of Done). Its tier, (S)mall, (M)edium or (L)arge, scales the ceremony to the risk of the change. A failing check is allowed one fix, then the agent stops and reports.</p></div>
+      <ul class="tags" data-i18n="quality.tags"><li>Definition of Ready</li><li>Definition of Done</li><li>Tiers S, M, L</li></ul>
+    </div>
+    <div><figure class="shot"><button type="button" class="example-open" data-i18n="quality.shot"><img src="screens/quality.png" alt="The Quality view of the Performance Center" loading="lazy"></button></figure><p class="cap" data-i18n="quality.caption">The Quality view of the Performance Center</p></div>
+  </div>
+</section>
+
+<section class="more" id="more">
+  <div class="wrap">
+    <p class="eyebrow" data-i18n="more.eyebrow">Behind the views</p>
+    <h2 data-i18n="more.title">Three more reasons why it holds at scale</h2>
+    <div class="cards">
+      <div class="card">
+        <h3 data-i18n="index-card.title">Designed for agents: the index</h3>
+        <p data-i18n="index-card.text">A script indexes every artifact, one line each, with its exact location. The agent reads this small file first and opens only the useful lines. It takes the next free identifier from it: none is ever duplicated. The Performance Center reads the same index: what the agent sees and what you measure cannot diverge. The index is recomputed automatically, at the start of every session and before every commit, by a deterministic skill.</p>
+        <pre class="excerpt" data-i18n="index-card.excerpt"><span>@agnos-process/1.requirements/FTR-BKG-001-room-reservation.md</span>
+RQ-BKG-003|42-56||Double booking rejection
+<span>@agnos-process/3.plan/PLAN-BKG-001-core-booking.md</span>
+TASK-BKG-003|50-66|Done|Implement overlap rule</pre>
+        <p class="cap" data-i18n="index-card.caption">Roombook: an excerpt of the index.</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="id-card.title">Exact links, not resemblances</h3>
+        <p data-i18n="id-card.text">Every requirement, decision, task and function carries a unique identifier, and each element cites those it depends on, like a primary key and its foreign keys in a database. The agent therefore follows exact links instead of guessing, by semantic proximity, which text relates to what. The same inputs give the same links: the agent&#x27;s work becomes more deterministic, and verifiable.</p>
+        <svg class="id-graph" viewBox="0 0 340 196" role="img" data-i18n-attr="aria-label=id-card.graph" aria-label="TASK-BKG-003, ADR-BKG-002 and overlap_rule.py all cite RQ-BKG-003">
+          <defs><marker id="id-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="arrow-head" d="M0 0 10 5 0 10z"></path></marker></defs>
+          <line class="edge" x1="60.9" y1="131.3" x2="144.4" y2="64.5" marker-end="url(#id-arrow)"></line>
+          <line class="edge" x1="268.7" y1="131.7" x2="176.1" y2="63.8" marker-end="url(#id-arrow)"></line>
+          <line class="edge" x1="278" y1="52" x2="177" y2="52" marker-end="url(#id-arrow)"></line>
+          <circle class="node node-task" cx="50" cy="140" r="12"></circle>
+          <circle class="node node-rq" cx="160" cy="52" r="15"></circle>
+          <circle class="node node-adr" cx="280" cy="140" r="12"></circle>
+          <circle class="node node-file" cx="290" cy="52" r="12"></circle>
+          <text class="node-label" x="160" y="14" data-i18n="id-card.requirement-id">RQ-BKG-003</text>
+          <text class="node-title" x="160" y="28" data-i18n="id-card.requirement-title">Double booking rejection</text>
+          <text class="node-label node-start" x="4" y="172" data-i18n="id-card.task-id">TASK-BKG-003</text>
+          <text class="node-title node-start" x="4" y="186" data-i18n="id-card.task-title">Implement overlap rule</text>
+          <text class="node-label node-end" x="336" y="172" data-i18n="id-card.adr-id">ADR-BKG-002</text>
+          <text class="node-title node-end" x="336" y="186" data-i18n="id-card.adr-title">Initial reservation storage</text>
+          <text class="node-label node-end" x="336" y="14" data-i18n="id-card.file-id">overlap_rule.py</text>
+          <text class="node-title node-end" x="336" y="28" data-i18n="id-card.file-title">OverlapRule</text>
+          <text class="edge-label" x="228" y="45" data-i18n="id-card.cites">cites</text>
+          <text class="edge-label node-end" x="94" y="90" data-i18n="id-card.cites">cites</text>
+          <text class="edge-label node-start" x="226" y="90" data-i18n="id-card.cites">cites</text>
+        </svg>
+        <div class="stack">
+          <div class="key"><span class="label" data-i18n="id-card.primary-key">Primary key</span><pre class="snippet" data-i18n="id-card.requirement">### RQ-BKG-003: Double booking rejection</pre></div>
+          <div class="key"><span class="label" data-i18n="id-card.foreign-key">Foreign key</span><pre class="snippet" data-i18n="id-card.task">### TASK-BKG-003: Implement overlap rule
+- Requirement refs: <mark>RQ-BKG-003</mark>
+- ADR refs: ADR-BKG-001 (DEC-BKG-002)</pre></div>
+          <div class="key"><span class="label" data-i18n="id-card.foreign-key">Foreign key</span><pre class="snippet" data-i18n="id-card.adr"># ADR-BKG-002: Initial reservation storage
+Motivated by: RQ-BKG-002, <mark>RQ-BKG-003</mark>, RQ-BKG-005 (FTR-BKG-001); builds on ADR-BKG-001.
+### DEC-BKG-003: In-memory dictionary for reservations</pre></div>
+        </div>
+        <ul class="matching"><li data-i18n="id-card.semantic">Semantic matching: a probable link</li><li class="exact" data-i18n="id-card.exact">Identifier: an exact link</li></ul>
+        <pre class="excerpt" data-i18n="id-card.code"><span>@service/roombook/rules/overlap_rule.py</span>
+# <mark>RQ-BKG-003</mark>, DEC-BKG-002 (ADR-BKG-001)
+class OverlapRule:
+    &quot;&quot;&quot;Rejects an interval that overlaps an existing reservation (<mark>RQ-BKG-003</mark>).&quot;&quot;&quot;
+
+    def check(self, room: Room, request: ReservationRequest, existing: Sequence[Reservation]) -&gt; None:
+        &quot;&quot;&quot;Raise ReservationConflict naming the first overlapping reservation (<mark>RQ-BKG-003</mark>).&quot;&quot;&quot;</pre>
+      </div>
+      <div class="card">
+        <h3 data-i18n="design-card.title">Interfaces under the same control</h3>
+        <p data-i18n="design-card.text">A project with a user interface defines its design system from the AGNOS template, before its first screen, as a requirement and an architecture decision. The design system is a specification like any other, expressed as design tokens and implemented in code.</p>
+        <div class="styles">
+          <div class="style"><span class="label" data-i18n="design-card.primary-name">Primary</span><pre class="snippet" data-i18n="design-card.primary-tokens">button.primary.background
+→ colour.accent.default
+→ colour.blue.600 = <mark>#2563eb</mark></pre><pre class="snippet snippet-css" data-i18n="design-card.primary-css">.button-primary {
+  background: var(--button-primary-background);
+  color: var(--button-primary-text);
+}</pre><span class="sample sample-primary" data-i18n="design-card.primary-button">Book this room</span></div>
+          <div class="style"><span class="label" data-i18n="design-card.danger-name">Danger</span><pre class="snippet" data-i18n="design-card.danger-tokens">button.danger.background
+→ colour.error.strong
+→ colour.red.700 = <mark>#b91c1c</mark></pre><pre class="snippet snippet-css" data-i18n="design-card.danger-css">.button-danger {
+  background: var(--button-danger-background);
+  color: var(--button-danger-text);
+}</pre><span class="sample sample-danger" data-i18n="design-card.danger-button">Cancel this reservation</span></div>
+        </div>
+        <p class="cap" data-i18n="design-card.caption">Buttons of the Roombook project, using the specified design tokens.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<section class="close" id="start">
+  <div class="wrap">
+    <div class="close-top">
+      <div>
+        <h2 data-i18n="close.title">See it on a real project</h2>
+        <p class="close-text" data-i18n="close.text">The demo page contains all the views, all the links and all the commits of Roombook&#x27;s two simulated months.</p>
+        <p class="addr" data-i18n="close.address">Generated by agnos-perf-center on Roombook, and published with this site.</p>
+      </div>
+      <a class="btn btn-primary" href="demo/PERF-CENTER.html" target="_blank" rel="noopener" data-i18n="close.cta">Open the demo Performance Center</a>
+    </div>
+    <h2 class="small" data-i18n="start.title">Three steps to the first session</h2>
+    <div class="steps">
+      <div><span class="n">1</span><h3 data-i18n="start.step1-title">Install the plugin</h3><p data-i18n="start.step1-text">A single marketplace for Claude Code and GitHub Copilot (OpenAI Codex support coming soon).</p><pre class="console" data-i18n="start.step1-command">claude plugin marketplace add &lt;marketplace&gt;
+claude plugin install agnos@agnos-marketplace</pre></div>
+      <div><span class="n">2</span><h3 data-i18n="start.step2-title">Add AGNOS to a project</h3><p data-i18n="start.step2-text">One call to <code>agnos-init</code>. Your own files remain intact.</p><pre class="console" data-i18n="start.step2-command">Call the agnos-init skill.</pre></div>
+      <div><span class="n">3</span><h3 data-i18n="start.step3-title">Start a session</h3><p data-i18n="start.step3-text">In a new conversation, the agent records the session and opens its branch.</p><pre class="console" data-i18n="start.step3-command">Start a new AGNOS session, trigram &lt;TRI&gt;.</pre></div>
+    </div>
+    <div class="foot"><span data-i18n="footer.developers"><a href="https://github.com/spashx/agnos-lightweight-process">TODO LIEN GETTING STARTED DU PLUG For your developers: the documentation on GitHub</a></span><span data-i18n="footer.license">AGNOS is distributed under the GNU Affero General Public License v3.</span></div>
+  </div>
+</section>
+
+<dialog class="zoom" data-i18n-attr="aria-label=examples.zoom" aria-label="Enlarged example"><button type="button" class="zoom-close" data-i18n-attr="aria-label=examples.close" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#icon-close"></use></svg></button><img></dialog>
+
+<script>
+/* RQ-WEB-007, RQ-WEB-010: the language switch and the chain's supervision switch. */
+(function () {
+  "use strict";
+  /* French texts, written by the build from fr.md; English is in the markup. */
+  const FR = {"html":{"brand.name":"AGNOS","brand.tagline":"Agentic efficiency by traceability","chain.approve":"Vous approuvez","chain.approve-on":"Décisions déléguées à l’agent","chain.code":"Tests, puis code","chain.code-id":"OverlapRule.check","chain.code-text":"Chaque élément cite ses identifiants","chain.commit":"Commit","chain.commit-id":"12dc6e4","chain.commit-text":"Un par tâche, ses identifiants vérifiés par un script","chain.decision":"Architecture et décision","chain.decision-id":"DEC-BKG-002","chain.decision-text":"Pourquoi cette conception, et ce qui a été écarté","chain.done":"Liste de contrôle validée","chain.foot":"Le travail se fait en sessions : un domaine fonctionnel, une branche, dix tâches au plus, pour une gestion optimale du contexte","chain.in-loop":"Human in the loop","chain.in-loop-text":"L’agent rédige ; vous décidez et approuvez chaque étape.","chain.measure":"Performance Center","chain.measure-text":"Supervision end-to-end du process, sur l’ensemble du projet","chain.mode-mixed":"Mixte","chain.mode-on":"Supervision de bout en bout","chain.on-loop":"Human on the loop","chain.on-loop-draft-text":"Invité à travailler en toute autonomie, l’agent rédige et prend les décisions ; vous supervisez, et intervenez si besoin.","chain.on-loop-text":"L’agent exécute la tâche approuvée ; vous supervisez, et intervenez si besoin.","chain.requirement":"Exigence","chain.requirement-id":"RQ-BKG-003","chain.requirement-text":"L’expression du besoin, formalisé pour être testable","chain.task":"Tâche","chain.task-id":"TASK-BKG-003","chain.task-text":"Calibrée selon le risque, approuvée avant de démarrer","chain.title":"La boucle agentique, du besoin jusqu’au commit","close.address":"Généré par agnos-perf-center sur Roombook, et publié avec ce site.","close.cta":"Ouvrir le Performance Center de démo","close.text":"La page de démo contient toutes les vues, tous les liens et tous les commits des deux mois simulés de Roombook.","close.title":"Voyez-le sur un vrai projet","delivery.caption":"La vue Delivery du Performance Center","delivery.question":"Qu’est-ce qui a été livré et à quelle vitesse ? La vélocité agentique est-elle maîtrisée ?","delivery.see":"Les tâches livrées au fil du temps, pondérées par leur niveau, et la friction de chaque session : questions que l’agent a dû poser, reprises sur erreur, tâches recalibrées, écarts détectés à la vérification.","delivery.shot":"\u003cimg src=\"screens/delivery.png\" alt=\"La vue Delivery du Performance Center\" loading=\"lazy\">","delivery.tags":"\u003cli>Sessions\u003c/li>\u003cli>Compteurs de friction\u003c/li>\u003cli>Auto-amélioration\u003c/li>","delivery.view":"vue Delivery","delivery.why":"Le travail se fait en sessions de dix tâches au plus, pour une utilisation optimale du contexte. Chaque session se clôt sur ses compteurs de friction ; si l’un d’eux n’est pas nul, une étape d’auto-amélioration propose des règles pour le projet, appliquées une fois approuvées et sur un budget défini.","design-card.caption":"Boutons du projet Roombook, exploitant les design token spécifiés.","design-card.danger-button":"Annuler cette réservation","design-card.danger-css":".button-danger {\n  background: var(--button-danger-background);\n  color: var(--button-danger-text);\n}","design-card.danger-name":"Danger","design-card.danger-tokens":"button.danger.background\n→ colour.error.strong\n→ colour.red.700 = \u003cmark>#b91c1c\u003c/mark>","design-card.primary-button":"Réserver cette salle","design-card.primary-css":".button-primary {\n  background: var(--button-primary-background);\n  color: var(--button-primary-text);\n}","design-card.primary-name":"Principal","design-card.primary-tokens":"button.primary.background\n→ colour.accent.default\n→ colour.blue.600 = \u003cmark>#2563eb\u003c/mark>","design-card.text":"Un projet avec IHM définit son design system depuis le template AGNOS, avant son premier écran, sous forme d’exigence et de décision d’architecture. Le design system est une spécification comme une autre, projetée sous forme de design tokens et implémentés dans le code.","design-card.title":"Des IHMs sous le même contrôle","examples.adr":"\u003cimg src=\"screens/example-adr.png\" alt=\"Architecture Decision Record, et diagrammes auto-générés\" loading=\"lazy\">","examples.adr-caption":"Architecture Decision Record, et diagrammes auto-générés","examples.plan":"\u003cimg src=\"screens/example-plan.png\" alt=\"Plan d’exécution et tâche d’implémentation\" loading=\"lazy\">","examples.plan-caption":"Plan d’exécution et tâche d’implémentation","examples.requirement":"\u003cimg src=\"screens/example-requirement.png\" alt=\"Une exigence\" loading=\"lazy\">","examples.requirement-caption":"Une exigence","footer.developers":"\u003ca href=\"https://github.com/spashx/agnos-lightweight-process\">Pour vos développeurs : la documentation sur GitHub\u003c/a>","footer.license":"AGNOS est distribué sous licence GNU Affero General Public License v3.","graph.caption":"La vue Graph du Performance Center","graph.question":"Pourquoi ce code existe-t-il, et que toucherait une modification ?","graph.see":"L’arbre de dépendance d’un élément sélectionné: sa fonctionnalité, les décisions qui l’ont façonnée, les tâches qui l’ont livrée, les fichiers et fonctions qui l’implémentent.","graph.shot":"\u003cimg src=\"screens/graph.png\" alt=\"La vue Graph du Performance Center\" loading=\"lazy\">","graph.tags":"\u003cli>Abstract Syntax Tree\u003c/li>\u003cli>Grammaire d’identifiants\u003c/li>\u003cli>Graph explorable\u003c/li>","graph.view":"Vue Graph","graph.why":"La synergie de l’arbre syntaxique d’implémentation (arbre \u003cem>AST\u003c/em>) et de la grammaire unique d’identification garantissent une vision holistique et explorable des relations entre artefacts.","hero.cta-demo":"Ouvrir le Performance Center de démo","hero.cta-tour":"Tour d’horizon","hero.kicker":"Processus d’ingénierie pour l’IA agentique","hero.text":"AGNOS est un processus léger, outillé, pour les équipes de développement \u003cem>AI-native\u003c/em> (pods de quelques personnes ou solo). Exigences, décisions, tâches, code et commits portent les mêmes identifiants : le travail reste explicable, et le processus se mesure sur chaque projet, en temps réel grâce à l’application intégrée AGNOS Performance Center.","hero.title":"Les agents IA écrivent le code, ou bien plus.\u003cbr>\u003cem>Vous gardez le contrôle.\u003c/em>","hero.tools":"Fonctionne avec Claude Code, GitHub Copilot (support OpenAI Codex à venir). Ses artefacts sont en Markdown, versionnés dans git, afin de maximiser l’efficacité opérationnelle.","history.caption":"La vue Historique du Performance Center","history.question":"Qui a modifié quoi, et quand ? Agent, humain, ou les deux ?","history.see":"Chaque modification d’une exigence, d’une décision, d’un fichier ou d’une fonction, attribuée à ses auteurs depuis git. Chaque identité est classée humaine ou agent IA. Chaque commit, humain, agentique ou collaboratif, est traçable par une vue exigence ou une vue implémentation.","history.shot":"\u003cimg src=\"screens/history.png\" alt=\"La vue Historique du Performance Center\" loading=\"lazy\">","history.tags":"\u003cli>Vue chronologique\u003c/li>\u003cli>Un commit par tâche\u003c/li>\u003cli>Humain ou agent\u003c/li>","history.view":"Vue History","history.why":"Un commit par tâche, fait par un skill qui écrit les identifiants de tâche et d’ADR dans son message au standard \u003cem>Conventional Commits\u003c/em>. Git reste l’unique système de référence, indépendant de toute infrastructure.","id-card.adr":"# ADR-BKG-002: Initial reservation storage\nMotivated by: RQ-BKG-002, \u003cmark>RQ-BKG-003\u003c/mark>, RQ-BKG-005 (FTR-BKG-001); builds on ADR-BKG-001.\n### DEC-BKG-003: In-memory dictionary for reservations","id-card.adr-id":"ADR-BKG-002","id-card.adr-title":"Initial reservation storage","id-card.cites":"cite","id-card.code":"\u003cspan>@service/roombook/rules/overlap_rule.py\u003c/span>\n# \u003cmark>RQ-BKG-003\u003c/mark>, DEC-BKG-002 (ADR-BKG-001)\nclass OverlapRule:\n    &quot;&quot;&quot;Rejects an interval that overlaps an existing reservation (\u003cmark>RQ-BKG-003\u003c/mark>).&quot;&quot;&quot;\n\n    def check(self, room: Room, request: ReservationRequest, existing: Sequence[Reservation]) -&gt; None:\n        &quot;&quot;&quot;Raise ReservationConflict naming the first overlapping reservation (\u003cmark>RQ-BKG-003\u003c/mark>).&quot;&quot;&quot;","id-card.exact":"Identifiant : un lien exact","id-card.file-id":"overlap_rule.py","id-card.file-title":"OverlapRule","id-card.foreign-key":"Clé étrangère","id-card.primary-key":"Clé primaire","id-card.requirement":"### RQ-BKG-003: Double booking rejection","id-card.requirement-id":"RQ-BKG-003","id-card.requirement-title":"Double booking rejection","id-card.semantic":"Rapprochement sémantique : un lien probable","id-card.task":"### TASK-BKG-003: Implement overlap rule\n- Requirement refs: \u003cmark>RQ-BKG-003\u003c/mark>\n- ADR refs: ADR-BKG-001 (DEC-BKG-002)","id-card.task-id":"TASK-BKG-003","id-card.task-title":"Implement overlap rule","id-card.text":"Chaque exigence, décision, tâche et fonction porte un identifiant unique, et chaque élément cite ceux dont il dépend, comme une clé primaire et ses clés étrangères dans une base de données. L’agent suit donc des liens exacts au lieu de deviner, par proximité sémantique, quel texte se rapporte à quoi. Les mêmes entrées donnent les mêmes liens : le travail de l’agent devient plus déterministe, et vérifiable.","id-card.title":"Des liens exacts, pas des ressemblances","index-card.caption":"Roombook : un extrait de l’index.","index-card.excerpt":"\u003cspan>@agnos-process/1.requirements/FTR-BKG-001-room-reservation.md\u003c/span>\nRQ-BKG-003|42-56||Double booking rejection\n\u003cspan>@agnos-process/3.plan/PLAN-BKG-001-core-booking.md\u003c/span>\nTASK-BKG-003|50-66|Done|Implement overlap rule","index-card.text":"Un script indexe chaque artefact, une ligne chacun, avec son emplacement exact. L’agent lit d’abord ce petit fichier et n’ouvre que les lignes utiles. Il y prend le prochain identifiant libre : aucun n’est jamais dupliqué. Le Performance Center lit le même index : ce que voit l’agent et ce que vous mesurez ne peuvent pas diverger. L’index est recalculé automatiquement, au début de chaque session et avant chaque commit, par un skill déterministe.","index-card.title":"Pensé pour les agents : l’index","labels.see":"Ce que vous voyez","labels.why":"Ce qui le rend possible","matrix.caption":"La vue Matrice du Performance Center","matrix.question":"Ce qui a été demandé est-il vraiment construit ?","matrix.see":"La matrice de traçabilité de bout en bout, des capacités fonctionnelles au code, sur une page unique, exportable directement.","matrix.shot":"\u003cimg src=\"screens/matrix.png\" alt=\"Vue Matrice\" loading=\"lazy\">","matrix.tags":"\u003cli>EARS\u003c/li>\u003cli>Gherkin\u003c/li>\u003cli>Identifiants dans le code\u003c/li>","matrix.view":"Vue Matrice","matrix.why":"Chaque élément du process est identifié de manière unique, de la capacité fonctionnelle au commit. La spécification et les tests, exprimés dans des syntaxes testables (\u003cem>EARS\u003c/em>, \u003cem>Gherkin\u003c/em>), réduisent au minimum l’interprétation agentique à l’implémentation.","more.eyebrow":"Derrière les vues","more.title":"Trois autres raisons pour lesquelles cela tient à l’échelle","nav.demo":"Démo","nav.english":"EN","nav.french":"FR","nav.start":"Démarrer","nav.tour":"Tour d’horizon","notice.label":"Démo","notice.text":"Les vues de cette page viennent de Roombook, le projet de démonstration d’AGNOS, dont l’équipe et les deux mois d’historique sont simulés.","page.title":"AGNOS - Agentic efficiency by traceability","quality.caption":"La vue Quality du Performance Center","quality.question":"La traçabilité est-elle garantie, par domaine fonctionnel ?","quality.see":"Des KPIs simples à comprendre de A à E, calculés à partir de contrôles pondérés par le risque. Chaque écart désigne l’élément à corriger : sur Roombook, des fonctions qui ne citent pas encore d’exigence.","quality.shot":"\u003cimg src=\"screens/quality.png\" alt=\"La vue Quality du Performance Center\" loading=\"lazy\">","quality.tags":"\u003cli>Definition of Ready\u003c/li>\u003cli>Definition of Done\u003c/li>\u003cli>Niveaux S, M, L\u003c/li>","quality.view":"Vue Quality","quality.why":"Des portes que l’agent ne peut pas contourner. Chaque tâche répond à un besoin, ne démarre qu’une fois approuvée (Definition of Ready) et ne se clôt qu’une fois sa liste de contrôle validée (Definition of Done). Son niveau, (S)mall, (M)edium ou (L)arge, proportionne la cérémonie au risque de la modification. Un contrôle en échec a droit à une correction, puis l’agent s’arrête et rend compte.","start.step1-command":"claude plugin marketplace add &lt;marketplace&gt;\nclaude plugin install agnos@agnos-marketplace","start.step1-text":"Une seule marketplace pour Claude Code et GitHub Copilot (support OpenAI Codex à venir).","start.step1-title":"Installer le plugin","start.step2-command":"Appelez le skill agnos-init.","start.step2-text":"Un appel à \u003ccode>agnos-init\u003c/code>. Vos propres fichiers restent intacts.","start.step2-title":"Ajouter AGNOS à un projet","start.step3-command":"Démarrez une nouvelle session AGNOS, trigramme &lt;TRI&gt;.","start.step3-text":"Dans une nouvelle conversation, l’agent enregistre la session et ouvre sa branche.","start.step3-title":"Démarrer une session","start.title":"Trois étapes jusqu’à la première session","tour.eyebrow":"Tour d’horizon","tour.text":"Les cinq vues du Performance Center répondent au besoin fondamental de monitoring de vos développements. Chaque exemple de vue ci-dessous est une capture du Performance Center sur Roombook, le projet de démonstration d’AGNOS. Cliquez sur l’une d’elles pour l’ouvrir, en direct, dans la démo.","tour.title":"Le Performance Center, centre de contrôle de vos développements agentiques"},"attr":{"brand.name":"AGNOS","chain.supervision":"Supervision","examples.close":"Fermer","examples.zoom":"Exemple agrandi","id-card.graph":"TASK-BKG-003, ADR-BKG-002 et overlap_rule.py citent tous RQ-BKG-003","nav.language":"Langue","nav.sections":"Sections","page.description":"AGNOS, un processus d’ingénierie léger pour les équipes de développement AI-native."}};
+  const LANG_KEY = "agnos-site-lang";
+  const ENGLISH = "en", FRENCH = "fr";
+  const $$ = s => Array.from(document.querySelectorAll(s));
+  const slots = $$("[data-i18n]");
+  slots.forEach(e => { e.dataset.en = e.innerHTML; });
+  const attributes = $$("[data-i18n-attr]").map(e => {
+    const [name, key] = e.dataset.i18nAttr.split("=");
+    return { e, name, key, en: e.getAttribute(name) };
+  });
+  let lang = ENGLISH;
+  function apply() {
+    slots.forEach(e => { const v = lang === FRENCH ? FR.html[e.dataset.i18n] : e.dataset.en; if (v != null) e.innerHTML = v; });
+    attributes.forEach(a => { const v = lang === FRENCH ? FR.attr[a.key] : a.en; if (v != null) a.e.setAttribute(a.name, v); });
+    $$(".lang button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === lang)));
+    document.documentElement.lang = lang;
+  }
+  $$(".lang button").forEach(b => b.addEventListener("click", () => {
+    lang = b.dataset.lang;
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) { /* storage unavailable: the choice lasts for this view */ }
+    apply();
+  }));
+  let saved = "";
+  try { saved = localStorage.getItem(LANG_KEY) || ""; } catch (e) { saved = ""; }
+  lang = saved || ((navigator.language || "").toLowerCase().startsWith(FRENCH) ? FRENCH : ENGLISH);
+  if (lang !== ENGLISH) apply();
+  /* The chain: human in the loop for the requirement, the decision and the task, or on the loop throughout. */
+  const chain = document.querySelector(".chain");
+  $$("[data-chain]").forEach(b => b.addEventListener("click", () => {
+    chain.dataset.mode = b.dataset.chain;
+    $$("[data-chain]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+  }));
+  /* RQ-WEB-017, RQ-WEB-011: an example or a tour screenshot enlarged in a dialog; Escape, the backdrop or the button close it, the focus returns. */
+  const zoom = document.querySelector(".zoom");
+  const zoomImage = zoom.querySelector("img");
+  let opener = null;
+  $$(".example-open").forEach(b => b.addEventListener("click", () => {
+    const image = b.querySelector("img");
+    zoomImage.src = image.src;
+    zoomImage.alt = image.alt;
+    opener = b;
+    zoom.showModal();
+  }));
+  zoom.querySelector(".zoom-close").addEventListener("click", () => zoom.close());
+  zoom.addEventListener("click", event => { if (event.target === zoom) zoom.close(); });
+  zoom.addEventListener("close", () => { if (opener) opener.focus(); });
+})();
+</script>
+</body>
+</html>
